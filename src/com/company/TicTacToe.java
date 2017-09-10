@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 // todo make java docs for the methods
 public class TicTacToe {
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
 
     private int playerplaying = 1, playedTurns = 0;
