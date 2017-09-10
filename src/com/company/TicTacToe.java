@@ -19,7 +19,7 @@ import java.util.Scanner;
 
  */
 
-
+// todo make java docs for the methods
 public class TicTacToe {
     Scanner scanner = new Scanner(System.in);
 

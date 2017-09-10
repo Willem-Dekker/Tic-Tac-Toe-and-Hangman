@@ -47,7 +47,7 @@ public class Main {
             if (setup){
                 System.out.println("Enter Name of Player 1");
                 ticTacToe.setPlayer_1(scanner.nextLine());
-
+//              todo add hangman functions for use in rest of program
                 System.out.println("Enter Name of Player 2");
                 ticTacToe.setPlayer_2(scanner.nextLine());
                 setup = false;

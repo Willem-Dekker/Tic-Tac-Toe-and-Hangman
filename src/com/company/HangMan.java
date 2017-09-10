@@ -93,6 +93,7 @@ public class HangMan {
         System.out.println("/_/ /_/\\__,_/_/ /_/\\__, /_/ /_/ /_/\\__,_/_/ /_/ ");
         System.out.println("                  /____/                        \n");
     }
+
     private void printHangman(int stage){
         switch (stage){
             case 0:
