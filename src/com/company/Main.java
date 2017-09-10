@@ -57,15 +57,10 @@ public class Main {
                         "(H) ->  Hangman (Coming Soon!!)\n" +
                         "(Q) ->  Quit\n");
                 input = scanner.nextLine();
-                if(input.equals("T")||input.equals("t")) {
-                    ticTacToe.play();
-                }else if(input.equals("H")||input.equals("h")){
-                    hangMan.play();
-                }else if(input.equals("Q")||input.equals("q")){
-                    break;
-                }else{
-                    System.out.println("Syntax ERROR!!! try again");
-                }
+                if(input.equals("T")||input.equals("t")) ticTacToe.play();
+                else if(input.equals("H")||input.equals("h"))hangMan.play();
+                else if(input.equals("Q")||input.equals("q"))break;
+                else System.out.println("Syntax ERROR!!! try again");
             }
         }
     }
