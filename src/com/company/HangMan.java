@@ -19,22 +19,19 @@ import java.util.Scanner;
 
  */
 public class HangMan {
-    private String  word = "",userGuess = "" ;
-//todo word to char[] userGuess to char[]
-    //word.toCharArray()
+    private char[]  word ,userGuess;
+
     private String player_1 , player_2; //variables for storing the players names
-    private int playerplaying = 1, playedTurns = 0, wordlength = 0, hangingStage = 0;
+    private int playerplaying = 1, playedTurns = 0, hangingStage = 0;
 
     private Scanner scanner = new Scanner(System.in);
 
     public void play(){
         printheader();
         userWordInput();
-        printHangman(hangingStage);
+        switchTurn();
         getuserinput();
-        for (int i = 0; i <10 ; i++) {
-            printHangman(i);
-        }
+        reset();
     }
 
     private void getuserinput(){
@@ -46,21 +43,23 @@ public class HangMan {
         }
         while(true){
             printHangman(hangingStage);
-            System.out.println(userGuess);
+            System.out.println(getUserGuess());
             System.out.print(((playerplaying == 1)? player_1: player_2));
             System.out.println(" enter your guess for the word:");
             input = scanner.nextLine();
             if ((input.length() == 1)) {
                 if(checkIfInWord(input.charAt(0))){
+                    if(checkWin()){
+                        break;
+                    }else{
+                        System.out.println("That character is in the word" );
+                    }
+
+                }else{
                     hangingStage++;
-                    System.out.println("That character is in the word" );
-                    //printHangman(hangingStage);
                 }
             } else {
-                if(checkIfInWord(input.charAt(0))){
-                    hangingStage++;
-                    //printHangman(hangingStage);
-                }
+            //todo add code for whole word entery
             }
 
         }
@@ -68,17 +67,22 @@ public class HangMan {
 
     private void userWordInput(){
         while(true) {
-            System.out.println("Enter the word to be guessed");
+            System.out.print(((playerplaying == 1)? player_1: player_2));
+            System.out.println(" enter the word to be guessed");
             String input = scanner.nextLine();
+            word = input.toCharArray();
             if (input.length() > 1) {
+                userGuess = new char[input.length()];
                 for (int i = 0; i < input.length() ; i++) {
-                    userGuess += "_";
+                    userGuess[i] = '_';
                 }
+                switchTurn();
                 break;
             }else{
                 System.out.println("ERROR!");
             }
         }
+
     }
     //todo add fuction for checking the whole word
     private boolean checkword(String input){
@@ -89,20 +93,30 @@ public class HangMan {
         }
 
     }
+    /**     getUserGuess()
+     * gets the char[] and makes an string with spaces between the chars
+     *
+     * @return the String with the current progress for the word.
+     *
+     * */
+    public String getUserGuess() {
+        String temp = "";
+        for (int i = 0; i < userGuess.length ; i++) {
+            temp += userGuess[i] + " ";
+        }
+        return temp;
 
-    public String getWord() {
-        return word;
     }
 
     private boolean checkIfInWord(char input){
         int foundChars = 0;
         char c;
-        for (int i = 0; i < word.length() ; i++) {
-            c=word.charAt(i);
+
+        for (int i = 0; i < word.length; i++) {
+            c = word[i];
             if(c == input){
                 foundChars++;
-                String temp = userGuess.substring(0,i-1) + c + userGuess.substring(i+1);
-                userGuess = temp;
+                userGuess[i] = c;
             }
         }
         if(foundChars > 0){
@@ -115,11 +129,35 @@ public class HangMan {
     private void reset(){
         playedTurns = 0;
         hangingStage = 0;
-        wordlength = 0;
-        word = "";
-        userGuess = "";
+        word = "".toCharArray();
+        userGuess = "".toCharArray();
     }
 
+    private void switchTurn(){
+        playerplaying = ((playerplaying == 1) ? 2 : 1);
+    }
+
+    private boolean checkWin(){
+        String wordToGuess, guess;
+        wordToGuess = charArrayToString(word);
+        guess = charArrayToString(userGuess);
+        System.out.println("Debug: "+wordToGuess + guess);
+        if(wordToGuess.equals(guess)){
+            System.out.println("winner winner chicken dinner!!");
+            System.out.print(((playerplaying == 1)? player_1: player_2));
+            System.out.println(" you win!");
+            switchTurn();
+            return true;
+        }
+        else return false;
+    }
+    private String charArrayToString(char[] input){
+        String output = "";
+        for (int i = 0; i < input.length; i++) {
+            output += input[i];
+        }
+        return output;
+    }
     private void printheader(){
         System.out.println("    __                                          ");
         System.out.println("   / /_  ____ _____  ____ _____ ___  ____ _____ ");
