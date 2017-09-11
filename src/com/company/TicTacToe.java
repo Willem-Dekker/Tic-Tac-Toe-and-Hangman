@@ -44,7 +44,7 @@ public class TicTacToe {
     }
 
     private boolean check_move(int number){
-        if(number>9){
+        if(number>9 || number < 1){
             return false;
         }
         String value = getDataFromCell(number);
