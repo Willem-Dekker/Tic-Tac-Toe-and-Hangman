@@ -145,7 +145,7 @@ public class HangMan {
         if(wordToGuess.equals(guess)){
             System.out.println("winner winner chicken dinner!!");
             System.out.print(((playerplaying == 1)? player_1: player_2));
-            System.out.println(" you win!");
+            System.out.println(" you win!\n\n");
             switchTurn();
             return true;
         }
