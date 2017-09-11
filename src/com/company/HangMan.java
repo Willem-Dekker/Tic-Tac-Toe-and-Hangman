@@ -24,10 +24,13 @@ public class HangMan {
     private String player_1 , player_2; //variables for storing the players names
     private int playerplaying = 1, playedTurns = 0, wordlength = 0, hangingStage = 0;
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public void play(){
         printheader();
+        userWordInput();
+        printHangman(hangingStage);
+        getuserinput();
         for (int i = 0; i <10 ; i++) {
             printHangman(i);
         }
@@ -35,16 +38,27 @@ public class HangMan {
 
     private void getuserinput(){
         String input;
+        if(1 == playerplaying){
+            playerplaying = 2;
+        }else{
+            playerplaying = 1;
+        }
         while(true){
-            System.out.println("Enter your guess for the word:");
-            input = scanner.next();
-            if ((input.length() > 1)) {
-                if(checkword(input)){
-                    return;
+            printHangman(hangingStage);
+            System.out.println(userGuess);
+            System.out.print(((playerplaying == 1)? player_1: player_2));
+            System.out.println(" enter your guess for the word:");
+            input = scanner.nextLine();
+            if ((input.length() == 1)) {
+                if(checkIfInWord(input.charAt(0))){
+                    hangingStage++;
+                    System.out.println("That character is in the word" );
+                    //printHangman(hangingStage);
                 }
             } else {
-                if(checkIfInWord(input)){
-                    return;
+                if(checkIfInWord(input.charAt(0))){
+                    hangingStage++;
+                    //printHangman(hangingStage);
                 }
             }
 
@@ -75,9 +89,21 @@ public class HangMan {
 
     }
 
-    private boolean checkIfInWord(String input){
-        int foundChars = 0;
+    public String getWord() {
+        return word;
+    }
 
+    private boolean checkIfInWord(char input){
+        int foundChars = 0;
+        char c;
+        for (int i = 0; i < word.length() ; i++) {
+            c=word.charAt(i);
+            if(c == input){
+                foundChars++;
+                String temp = userGuess.substring(0,i-1) + c + userGuess.substring(i+1);
+                userGuess = temp;
+            }
+        }
         if(foundChars > 0){
             return true;
         }else {
@@ -208,4 +234,11 @@ public class HangMan {
 
     }
 
+    public void setPlayer_1(String player_1) {
+        this.player_1 = player_1;
+    }
+
+    public void setPlayer_2(String player_2) {
+        this.player_2 = player_2;
+    }
 }

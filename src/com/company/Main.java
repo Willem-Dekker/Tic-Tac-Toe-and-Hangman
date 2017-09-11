@@ -22,7 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); //creating an scanner for reading the input of players.
-        String input;
+        String input, player_1, player_2;
         TicTacToe ticTacToe = new TicTacToe();
         HangMan hangMan = new HangMan();
         boolean setup = true;
@@ -45,11 +45,19 @@ public class Main {
 
         while(true){
             if (setup){
+                //player 1
                 System.out.println("Enter Name of Player 1");
-                ticTacToe.setPlayer_1(scanner.nextLine());
-//              todo add hangman functions for use in rest of program
+                player_1 = scanner.nextLine();
+                ticTacToe.setPlayer_1(player_1);
+                hangMan.setPlayer_1(player_1);
+
+                //player 2
                 System.out.println("Enter Name of Player 2");
-                ticTacToe.setPlayer_2(scanner.nextLine());
+                player_2 = scanner.nextLine();
+                ticTacToe.setPlayer_2(player_2);
+                hangMan.setPlayer_2(player_2);
+
+                //end of setup
                 setup = false;
             }else{
                 System.out.print("Make an selection\n" +

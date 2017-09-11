@@ -34,7 +34,7 @@ public class TicTacToe {
     public TicTacToe(){
 
     }
-
+//todo Add devicion lines to playing board
     private void print_playing_board(){
         for (int i=0; i < 3; i++ ){
             for (int j = 0; j < 3; j++) {
