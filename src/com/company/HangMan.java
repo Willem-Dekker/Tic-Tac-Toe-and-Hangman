@@ -20,7 +20,8 @@ import java.util.Scanner;
  */
 public class HangMan {
     private String  word = "",userGuess = "" ;
-
+//todo word to char[] userGuess to char[]
+    //word.toCharArray()
     private String player_1 , player_2; //variables for storing the players names
     private int playerplaying = 1, playedTurns = 0, wordlength = 0, hangingStage = 0;
 

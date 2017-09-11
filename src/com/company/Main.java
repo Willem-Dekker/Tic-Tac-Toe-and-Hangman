@@ -27,7 +27,7 @@ public class Main {
         HangMan hangMan = new HangMan();
         boolean setup = true;
         System.out.println(
-                "     __  ___          __        ____\n" +
+                        "     __  ___          __        ____\n" +
                         "    /  |/  /___ _____/ /__     / __ )__  ___\n" +
                         "   / /|_/ / __ `/ __  / _ \\   / __  / / / (_)\n" +
                         "  / /  / / /_/ / /_/ /  __/  / /_/ / /_/ /\n" +
