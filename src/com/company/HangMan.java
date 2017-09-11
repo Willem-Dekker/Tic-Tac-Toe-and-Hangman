@@ -19,7 +19,7 @@ import java.util.Scanner;
 
  */
 public class HangMan {
-    String  word = "",userGuess = "" ;
+    private String  word = "",userGuess = "" ;
 
     private String player_1 , player_2; //variables for storing the players names
     private int playerplaying = 1, playedTurns = 0, wordlength = 0, hangingStage = 0;
@@ -83,6 +83,14 @@ public class HangMan {
         }else {
             return false;
         }
+    }
+
+    private void reset(){
+        playedTurns = 0;
+        hangingStage = 0;
+        wordlength = 0;
+        word = "";
+        userGuess = "";
     }
 
     private void printheader(){
