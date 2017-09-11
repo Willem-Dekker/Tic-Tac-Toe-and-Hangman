@@ -80,7 +80,7 @@ public class HangMan {
             }
         }
     }
-
+    //todo add fuction for checking the whole word
     private boolean checkword(String input){
         if(input.equals(word)){
             return true;
