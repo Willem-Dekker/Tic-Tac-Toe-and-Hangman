@@ -57,8 +57,17 @@ public class HangMan {
 
                 }else{
                     hangingStage++;
+
                 }
             } else {
+                if(checkword(input)){
+                    if(checkWin()){
+                        break;
+                    }else{
+                        hangingStage++;
+                    }
+
+                }
             //todo add code for whole word entery
             }
 
@@ -86,13 +95,15 @@ public class HangMan {
     }
     //todo add fuction for checking the whole word
     private boolean checkword(String input){
-        if(input.equals(word)){
+        if(input.equals(charArrayToString(word))){
+            userGuess = input.toCharArray();
             return true;
         }else{
             return false;
         }
 
     }
+
     /**     getUserGuess()
      * gets the char[] and makes an string with spaces between the chars
      *
@@ -129,6 +140,7 @@ public class HangMan {
     private void reset(){
         playedTurns = 0;
         hangingStage = 0;
+        //switchTurn();
         word = "".toCharArray();
         userGuess = "".toCharArray();
     }
@@ -141,16 +153,16 @@ public class HangMan {
         String wordToGuess, guess;
         wordToGuess = charArrayToString(word);
         guess = charArrayToString(userGuess);
-        System.out.println("Debug: "+wordToGuess + guess);
+        //System.out.println("Debug: "+wordToGuess + guess); //debug line
         if(wordToGuess.equals(guess)){
             System.out.println("winner winner chicken dinner!!");
             System.out.print(((playerplaying == 1)? player_1: player_2));
             System.out.println(" you win!\n\n");
-            switchTurn();
             return true;
         }
         else return false;
     }
+
     private String charArrayToString(char[] input){
         String output = "";
         for (int i = 0; i < input.length; i++) {
@@ -158,6 +170,7 @@ public class HangMan {
         }
         return output;
     }
+
     private void printheader(){
         System.out.println("    __                                          ");
         System.out.println("   / /_  ____ _____  ____ _____ ___  ____ _____ ");
