@@ -25,15 +25,23 @@ public class HangMan {
     private int playerplaying = 1, hangingStage = 0;
 
     private Scanner scanner = new Scanner(System.in);
-
+    /**     play()
+     * the main controller of the game.
+     *
+     * */
     public void play(){
-        printheader();
+        printHeader();
         userWordInput();
         switchTurn();
         getuserinput();
         reset();
     }
 
+    /**     getuserinput()
+     * gets the user input for guessing the word
+     *  this function regulates the whole guess part of the game
+     *
+     * */
     private void getuserinput(){
         String input;
         if(1 == playerplaying){
@@ -83,6 +91,10 @@ public class HangMan {
         }
     }
 
+    /**     userWordInput()
+     * asks the user for an word checks for valid input and stores it in the global variable
+     *
+     * */
     private void userWordInput(){
         while(true) {
             System.out.print(((playerplaying == 1)? player_1: player_2));
@@ -103,6 +115,15 @@ public class HangMan {
 
     }
 
+    /**     checkword()
+     * checks if the string inputted is the words that needs
+     * to be guessed
+     *
+     * @param input the string entered by the user that needs to be checked
+     *
+     * @return true or false depending if string is the same
+     *
+     * */
     private boolean checkword(String input){
         if(input.equals(charArrayToString(word))){
             userGuess = input.toCharArray();
@@ -128,6 +149,14 @@ public class HangMan {
 
     }
 
+    /**     checkIfInWord()
+     * checks is the char is in the word
+     *
+     * @param input char that needs to be checked
+     *
+     * @return true if the character is in word else false
+     *
+     * */
     private boolean checkIfInWord(char input){
         int foundChars = 0;
         char c;
@@ -142,6 +171,10 @@ public class HangMan {
         return foundChars > 0;
     }
 
+    /**     reset()
+     * resets the global variables
+     *
+     * */
     private void reset(){
         hangingStage = 0;
         //switchTurn();
@@ -149,10 +182,20 @@ public class HangMan {
         userGuess = "".toCharArray();
     }
 
+    /**     switchTurn()
+     * Switches the user that is playing
+     *
+     * */
     private void switchTurn(){
         playerplaying = ((playerplaying == 1) ? 2 : 1);
     }
 
+    /**     checkWin()
+     * checks if the win condition is met
+     *
+     * @return true if win condition is met else false
+     *
+     * */
     private boolean checkWin(){
         String wordToGuess, guess;
         wordToGuess = charArrayToString(word);
@@ -166,6 +209,14 @@ public class HangMan {
         else return false;
     }
 
+    /**     charArrayToString()
+     * converts chararray to string.
+     *
+     * @param input the char array that needs to be converted
+     *
+     * @return the String with the current progress for the word.
+     *
+     * */
     private String charArrayToString(char[] input){
         String output = "";
         for (int i = 0; i < input.length; i++) {
@@ -174,7 +225,11 @@ public class HangMan {
         return output;
     }
 
-    private void printheader(){
+    /**     printHeader()
+     * prints the header of the game
+     *
+     * */
+    private void printHeader(){
         System.out.println("    __                                          ");
         System.out.println("   / /_  ____ _____  ____ _____ ___  ____ _____ ");
         System.out.println("  / __ \\/ __ `/ __ \\/ __ `/ __ `__ \\/ __ `/ __ \\");
@@ -183,6 +238,12 @@ public class HangMan {
         System.out.println("                  /____/                        \n");
     }
 
+    /**     printHangman()
+     * Prints the current stage of the hangman game
+     *
+     * @param stage the current stage of the game
+     *
+     * */
     private void printHangman(int stage){
         switch (stage){
             case 0:
@@ -289,10 +350,20 @@ public class HangMan {
 
     }
 
+    /**     setPlayer_1()
+     * sets the name value of player_1
+     * @param player_1 the Sting that needs to be set for player 1
+     *
+     * */
     protected void setPlayer_1(String player_1) {
         this.player_1 = player_1;
     }
 
+    /**     setPlayer_2()
+     * sets the name value of player_2
+     * @param player_2 the Sting that needs to be set for player 2
+     *
+     * */
     protected void setPlayer_2(String player_2) {
         this.player_2 = player_2;
     }

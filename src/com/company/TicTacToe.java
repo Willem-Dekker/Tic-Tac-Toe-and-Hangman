@@ -19,7 +19,6 @@ import java.util.Scanner;
 
  */
 
-// todo make java docs for the methods
 public class TicTacToe {
     private Scanner scanner = new Scanner(System.in);
 
@@ -34,15 +33,26 @@ public class TicTacToe {
     public TicTacToe(){
 
     }
-//todo Add devicion lines to playing board
+
+    /** print_playing_board()
+     * prints the playing board with devision lines.
+     */
     private void print_playing_board(){
         for (int i=0; i < 3; i++ ){
             for (int j = 0; j < 3; j++) {
                 System.out.print("[" + playing_board[i][j] + "]" + ((j<2) ? "\t" : "\n" ));
+
             }
+            System.out.print(((i < 2) ? "---------------\n" : ""));
         }
     }
 
+    /**
+     * check_move()
+     * checks if the move is valid
+     * @param number the number of the cell that needs to be checked 1-9
+     * @return boolean true false
+     */
     private boolean check_move(int number){
         if(number>9 || number < 1){
             return false;
@@ -51,6 +61,11 @@ public class TicTacToe {
         return value.compareTo("X") != 0 && value.compareTo("0") != 0;
     }
 
+    /**
+     * StoreMove()
+     * @param block block number 1-9
+     * @param player the current player 1-2
+     */
     private void storeMove(int block, int player){
             int x,y;
             x = (block-1)/3;
@@ -58,6 +73,11 @@ public class TicTacToe {
             playing_board[x][y-1] = (player == 1) ? "X" : "0";
     }
 
+    /**
+     * getDataFromCell
+     * @param number the number in the cell
+     * @return the stored data in the cell
+     */
     private String getDataFromCell(int number){
         int x,y;
         x = (number-1)/3;
@@ -65,6 +85,10 @@ public class TicTacToe {
         return playing_board[x][y-1];
     }
 
+    /** getUserInput()
+     *  gets input from the user
+     *
+     */
     private void getUserInput(){
         boolean accepted = false;
         int input;
@@ -87,6 +111,12 @@ public class TicTacToe {
         }
     }
 
+    /**     checkWin()
+     * checks if the win condition is met
+     *
+     * @return true if win condition is met else false
+     *
+     * */
     private boolean checkWin(){
         StringBuilder outputRow = new StringBuilder();
         StringBuilder outputColumn = new StringBuilder();
@@ -127,6 +157,10 @@ public class TicTacToe {
         return false;
     }
 
+    /**     reset()
+     * resets the global variables
+     *
+     * */
     private void reset(){
         Integer z = 1;
         playedTurns = 0;
@@ -139,6 +173,10 @@ public class TicTacToe {
 
     }
 
+    /**     play()
+     * the main controller of the game.
+     *
+     * */
     public void play(){
 
         printHeader();
@@ -172,18 +210,38 @@ public class TicTacToe {
 
     }
 
+    /**     getPlayer_1()
+     * gets the name value of player_1
+     * @return name value of player_1
+     *
+     * */
     public String getPlayer_1() {
         return player_1;
     }
 
+    /**     setPlayer_1()
+     * sets the name value of player_1
+     * @param player_1 the Sting that needs to be set for player 1
+     *
+     * */
     protected void setPlayer_1(String player_1) {
         this.player_1 = player_1;
     }
 
+    /**     getPlayer_2()
+     * gets the name value of player_2
+     * @return name value of player_2
+     *
+     * */
     public String getPlayer_2() {
         return player_2;
     }
 
+    /**     setPlayer_2()
+     * sets the name value of player_2
+     * @param player_2 the Sting that needs to be set for player 2
+     *
+     * */
     protected void setPlayer_2(String player_2) {
         this.player_2 = player_2;
     }
