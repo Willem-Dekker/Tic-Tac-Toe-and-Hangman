@@ -48,11 +48,7 @@ public class TicTacToe {
             return false;
         }
         String value = getDataFromCell(number);
-        if (value.compareTo("X") == 0 || value.compareTo("0") == 0){
-            return false;
-        }else{
-            return true;
-        }
+        return value.compareTo("X") != 0 && value.compareTo("0") != 0;
     }
 
     private void storeMove(int block, int player){
@@ -92,17 +88,17 @@ public class TicTacToe {
     }
 
     private boolean checkWin(){
-        String outputRow = "";
-        String outputColumn = "";
+        StringBuilder outputRow = new StringBuilder();
+        StringBuilder outputColumn = new StringBuilder();
         for (int j = 0; j < 3 ; j++) {
             for (int i = 0; i < 3; i++) {
-                outputRow += playing_board[j][i];
-                outputColumn += playing_board[i][j];
+                outputRow.append(playing_board[j][i]);
+                outputColumn.append(playing_board[i][j]);
 
             }
-            if (outputRow.equals("XXX") || outputRow.equals("000")) {
+            if (outputRow.toString().equals("XXX") || outputRow.toString().equals("000")) {
                 print_playing_board();
-                System.out.println((outputRow.equals("XXX") ? player_1 : player_2) + " has won!!!!");
+                System.out.println((outputRow.toString().equals("XXX") ? player_1 : player_2) + " has won!!!!");
                 return true;
 
             }if (outputColumn.equals("XXX") || outputColumn.equals("000")) {
@@ -111,8 +107,8 @@ public class TicTacToe {
                 return true;
 
             }else{
-                outputColumn = "";
-                outputRow = "";
+                outputColumn.delete(0,outputColumn.length());
+                outputRow = new StringBuilder();
             }
         }
         String leftToRight = playing_board[0][0] + playing_board[1][1] + playing_board[2][2];
@@ -180,7 +176,7 @@ public class TicTacToe {
         return player_1;
     }
 
-    public void setPlayer_1(String player_1) {
+    protected void setPlayer_1(String player_1) {
         this.player_1 = player_1;
     }
 
@@ -188,7 +184,7 @@ public class TicTacToe {
         return player_2;
     }
 
-    public void setPlayer_2(String player_2) {
+    protected void setPlayer_2(String player_2) {
         this.player_2 = player_2;
     }
 

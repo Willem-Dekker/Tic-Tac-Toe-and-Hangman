@@ -22,7 +22,7 @@ public class HangMan {
     private char[]  word ,userGuess;
 
     private String player_1 , player_2; //variables for storing the players names
-    private int playerplaying = 1, playedTurns = 0, hangingStage = 0;
+    private int playerplaying = 1, hangingStage = 0;
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -42,35 +42,42 @@ public class HangMan {
             playerplaying = 1;
         }
         while(true){
-            printHangman(hangingStage);
-            System.out.println(getUserGuess());
-            System.out.print(((playerplaying == 1)? player_1: player_2));
-            System.out.println(" enter your guess for the word:");
-            input = scanner.nextLine();
-            if ((input.length() == 1)) {
-                if(checkIfInWord(input.charAt(0))){
-                    if(checkWin()){
-                        break;
-                    }else{
-                        System.out.println("That character is in the word" );
+            if(hangingStage<9) {
+                printHangman(hangingStage);
+                System.out.println(getUserGuess());
+                System.out.print(((playerplaying == 1) ? player_1 : player_2));
+                System.out.println(" enter your guess for the word:");
+                input = scanner.nextLine();
+
+                if ((input.length() == 1)) {
+                    if (checkIfInWord(input.charAt(0))) {
+                        if (checkWin()) {
+                            break;
+                        } else {
+                            System.out.println("That character is in the word");
+                        }
+
+                    } else {
+                        hangingStage++;
+
                     }
+                } else {
+                    if (checkword(input)) {
+                        if (checkWin()) {
+                            break;
+                        } else {
+                            hangingStage++;
+                        }
 
-                }else{
-                    hangingStage++;
-
-                }
-            } else {
-                if(checkword(input)){
-                    if(checkWin()){
-                        break;
-                    }else{
+                    } else {
                         hangingStage++;
                     }
 
-                }else{
-                    hangingStage++;
                 }
-            //todo add code for whole word entery
+            }else{
+                System.out.print(((playerplaying == 1) ? player_1 : player_2));
+                System.out.println(" looses this game better luck next time\n");
+                break;
             }
 
         }
@@ -95,7 +102,7 @@ public class HangMan {
         }
 
     }
-    //todo add fuction for checking the whole word
+
     private boolean checkword(String input){
         if(input.equals(charArrayToString(word))){
             userGuess = input.toCharArray();
@@ -132,15 +139,10 @@ public class HangMan {
                 userGuess[i] = c;
             }
         }
-        if(foundChars > 0){
-            return true;
-        }else {
-            return false;
-        }
+        return foundChars > 0;
     }
 
     private void reset(){
-        playedTurns = 0;
         hangingStage = 0;
         //switchTurn();
         word = "".toCharArray();
@@ -155,7 +157,6 @@ public class HangMan {
         String wordToGuess, guess;
         wordToGuess = charArrayToString(word);
         guess = charArrayToString(userGuess);
-        //System.out.println("Debug: "+wordToGuess + guess); //debug line
         if(wordToGuess.equals(guess)){
             System.out.println("winner winner chicken dinner!!");
             System.out.print(((playerplaying == 1)? player_1: player_2));
@@ -288,11 +289,11 @@ public class HangMan {
 
     }
 
-    public void setPlayer_1(String player_1) {
+    protected void setPlayer_1(String player_1) {
         this.player_1 = player_1;
     }
 
-    public void setPlayer_2(String player_2) {
+    protected void setPlayer_2(String player_2) {
         this.player_2 = player_2;
     }
 }

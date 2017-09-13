@@ -62,11 +62,13 @@ public class Main {
             }else{
                 System.out.print("Make an selection\n" +
                         "(T) ->  TicTacToe\n" +
-                        "(H) ->  Hangman (Coming Soon!!)\n" +
+                        "(H) ->  Hangman\n" +
+                        "(C) ->  Change names\n" +
                         "(Q) ->  Quit\n");
                 input = scanner.nextLine();
                 if(input.equals("T")||input.equals("t")) ticTacToe.play();
                 else if(input.equals("H")||input.equals("h"))hangMan.play();
+                else if(input.equals("C")||input.equals("c"))setup= true;
                 else if(input.equals("Q")||input.equals("q"))break;
                 else System.out.println("Syntax ERROR!!! try again");
             }
