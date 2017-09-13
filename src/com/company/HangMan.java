@@ -67,6 +67,8 @@ public class HangMan {
                         hangingStage++;
                     }
 
+                }else{
+                    hangingStage++;
                 }
             //todo add code for whole word entery
             }
