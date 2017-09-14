@@ -178,8 +178,8 @@ public class HangMan {
     private void reset(){
         hangingStage = 0;
         //switchTurn();
-        word = "".toCharArray();
-        userGuess = "".toCharArray();
+        word =null;
+        userGuess =null;
     }
 
     /**     switchTurn()
