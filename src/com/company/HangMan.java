@@ -25,6 +25,7 @@ public class HangMan {
     private int playerplaying = 1, hangingStage = 0;
 
     private Scanner scanner = new Scanner(System.in);
+
     /**     play()
      * the main controller of the game.
      *
